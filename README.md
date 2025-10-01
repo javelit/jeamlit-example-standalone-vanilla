@@ -2,6 +2,8 @@
 Example Jeamlit app that you can fork. 
 **Standalone vanilla java / Jbang setup.** .
 
+More details about this example project are available in the [documentation](https://docs.jeamlit.io/get-started/installation/standalone-without-build-tool).
+
 ## Requirements
 
 `Java JDK >= 21`
