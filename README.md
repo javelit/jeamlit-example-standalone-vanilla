@@ -2,8 +2,7 @@
 Example Jeamlit app that you can fork. 
 **Standalone setup.** .
 
-The main file to learn from is [App.java](App.java).
-
+The key file to look at is [App.java](App.java).  
 More details about this example project are available in the [documentation](https://docs.jeamlit.io/get-started/installation/standalone-without-build-tool).
 
 ## Requirements
