@@ -5,7 +5,7 @@
 
 // NOTE: this Jeamlit import is only here to help the Intellij Jbang plugin - it is not strictly necessary
 // NOTE: make sure to install the plugin for highlighting and completion https://plugins.jetbrains.com/plugin/18257-jbang
-//DEPS io.jeamlit:jeamlit:0.25.0
+//DEPS io.jeamlit:jeamlit:0.38.0
 
 import io.jeamlit.core.Jt;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
@@ -33,7 +33,7 @@ public class App {
 
 
         // Use the imported library apache commons-math
-        Jt.divider().use();
+        Jt.divider("div1").use();
         Jt.markdown("## Using imported apache math dependency").use();
         double[] values = {1.2, 2.3, 3.4, 4.5, 5.6};
         DescriptiveStatistics stats = new DescriptiveStatistics(values);
