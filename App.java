@@ -5,7 +5,7 @@
 
 // NOTE: this Jeamlit import is only here to help the Intellij Jbang plugin - it is not strictly necessary
 // NOTE: make sure to install the plugin for highlighting and completion https://plugins.jetbrains.com/plugin/18257-jbang
-//DEPS io.jeamlit:jeamlit:0.38.0
+//DEPS io.jeamlit:jeamlit:0.44.0
 
 import io.jeamlit.core.Jt;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
