@@ -15,19 +15,13 @@ Install Jeamlit:
 
 ### With [JBang](https://www.jbang.dev/) (recommended):
 ```bash
-# find the latest version on Maven Central: https://central.sonatype.com/artifact/io.jeamlit/jeamlit
-JEAMLIT_VERSION=0.38.0
-
-jbang app install io.jeamlit:jeamlit:${JEAMLIT_VERSION}:all
+jbang app install io.jeamlit:jeamlit:0.38.0:all
 ```
 
 ### With curl:
 
 ```bash
-# find the latest version on Maven Central: https://central.sonatype.com/artifact/io.jeamlit/jeamlit
-JEAMLIT_VERSION=0.38.0
-
-curl -L -o jeamlit.jar https://repo1.maven.org/maven2/io/jeamlit/jeamlit/${JEAMLIT_VERSION}/jeamlit-${JEAMLIT_VERSION}-all.jar
+curl -L -o jeamlit.jar https://repo1.maven.org/maven2/io/jeamlit/jeamlit/0.38.0/jeamlit-0.38.0-all.jar
 ```
 
 ## Run 

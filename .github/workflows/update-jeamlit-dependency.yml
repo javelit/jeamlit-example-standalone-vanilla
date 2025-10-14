@@ -1,0 +1,73 @@
+name: Update Jeamlit Dependency
+
+on:
+  schedule:
+    # Run every Monday at 9am UTC
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+
+jobs:
+  update-dependency:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Fetch latest Jeamlit version from Maven Central
+        id: get-version
+        run: |
+          # Fetch maven-metadata.xml
+          METADATA_URL="https://repo1.maven.org/maven2/io/jeamlit/jeamlit/maven-metadata.xml"
+          METADATA=$(curl -s "$METADATA_URL")
+
+          # Extract latest version (prefer <release> over <latest>)
+          VERSION=$(echo "$METADATA" | sed -n 's/.*<release>\([^<]*\)<\/release>.*/\1/p')
+          # Fallback to <latest> if <release> not found
+          [ -z "$VERSION" ] && VERSION=$(echo "$METADATA" | sed -n 's/.*<latest>\([^<]*\)<\/latest>.*/\1/p')
+
+          if [ -z "$VERSION" ]; then
+            echo "Failed to fetch version from Maven Central"
+            exit 1
+          fi
+
+          echo "Latest version: $VERSION"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Update README.md
+        run: |
+          VERSION="${{ steps.get-version.outputs.version }}"
+
+          # Update JBang command: io.jeamlit:jeamlit:X.Y.Z:all
+          sed -i "s/io\.jeamlit:jeamlit:[0-9.]\+:all/io.jeamlit:jeamlit:$VERSION:all/g" README.md
+
+          # Update Maven Central URL: /jeamlit/X.Y.Z/jeamlit-X.Y.Z-all.jar
+          sed -i "s|jeamlit/[0-9.]\+/jeamlit-[0-9.]\+-all\.jar|jeamlit/$VERSION/jeamlit-$VERSION-all.jar|g" README.md
+
+      - name: Update App.java
+        run: |
+          VERSION="${{ steps.get-version.outputs.version }}"
+
+          # Update version in App.java: //DEPS io.jeamlit:jeamlit:X.Y.Z
+          sed -i "s/io\.jeamlit:jeamlit:[0-9.]\+/io.jeamlit:jeamlit:$VERSION/g" App.java
+
+      - name: Check for changes
+        id: check-changes
+        run: |
+          if git diff --quiet; then
+            echo "No changes detected"
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "Changes detected"
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push changes
+        if: steps.check-changes.outputs.has_changes == 'true'
+        run: |
+          VERSION="${{ steps.get-version.outputs.version }}"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md App.java
+          git commit -m "chore: update jeamlit dependency to $VERSION"
+          git push
