@@ -15,7 +15,7 @@ Install Jeamlit:
 
 ### With [JBang](https://www.jbang.dev/) (recommended):
 ```bash
-jbang app install io.jeamlit:jeamlit:0.44.0:all
+jbang app install io.jeamlit:jeamlit:0.44.0:all@fatjar
 ```
 
 ### With curl:
