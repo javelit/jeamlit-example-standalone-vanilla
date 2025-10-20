@@ -3,11 +3,11 @@
 // import a dependency with Jbang-like imports
 //DEPS org.apache.commons:commons-math3:3.6.1
 
-// NOTE: this Jeamlit import is only here to help the Intellij Jbang plugin - it is not strictly necessary
+// NOTE: this Javelit import is only here to help the Intellij Jbang plugin - it is not strictly necessary
 // NOTE: make sure to install the plugin for highlighting and completion https://plugins.jetbrains.com/plugin/18257-jbang
-//DEPS io.jeamlit:jeamlit:0.49.0
+//DEPS io.javelit:javelit:0.49.0
 
-import io.jeamlit.core.Jt;
+import io.javelit.core.Jt;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 
 public class App {

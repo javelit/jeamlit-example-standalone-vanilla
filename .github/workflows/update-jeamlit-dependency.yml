@@ -1,4 +1,4 @@
-name: Update Jeamlit Dependency
+name: Update Javelit Dependency
 
 on:
   schedule:
@@ -14,11 +14,11 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - name: Fetch latest Jeamlit version from Maven Central
+      - name: Fetch latest Javelit version from Maven Central
         id: get-version
         run: |
           # Fetch maven-metadata.xml
-          METADATA_URL="https://repo1.maven.org/maven2/io/jeamlit/jeamlit/maven-metadata.xml"
+          METADATA_URL="https://repo1.maven.org/maven2/io/javelit/javelit/maven-metadata.xml"
           METADATA=$(curl -s "$METADATA_URL")
 
           # Extract latest version (prefer <release> over <latest>)
@@ -38,18 +38,18 @@ jobs:
         run: |
           VERSION="${{ steps.get-version.outputs.version }}"
 
-          # Update JBang command: io.jeamlit:jeamlit:X.Y.Z:all
-          sed -i "s/io\.jeamlit:jeamlit:[0-9.]\+:all/io.jeamlit:jeamlit:$VERSION:all/g" README.md
+          # Update JBang command: io.javelit:javelit:X.Y.Z:all
+          sed -i "s/io\.javelit:javelit:[0-9.]\+:all/io.javelit:javelit:$VERSION:all/g" README.md
 
-          # Update Maven Central URL: /jeamlit/X.Y.Z/jeamlit-X.Y.Z-all.jar
-          sed -i "s|jeamlit/[0-9.]\+/jeamlit-[0-9.]\+-all\.jar|jeamlit/$VERSION/jeamlit-$VERSION-all.jar|g" README.md
+          # Update Maven Central URL: /javelit/X.Y.Z/javelit-X.Y.Z-all.jar
+          sed -i "s|javelit/[0-9.]\+/javelit-[0-9.]\+-all\.jar|javelit/$VERSION/javelit-$VERSION-all.jar|g" README.md
 
       - name: Update App.java
         run: |
           VERSION="${{ steps.get-version.outputs.version }}"
 
-          # Update version in App.java: //DEPS io.jeamlit:jeamlit:X.Y.Z
-          sed -i "s/io\.jeamlit:jeamlit:[0-9.]\+/io.jeamlit:jeamlit:$VERSION/g" App.java
+          # Update version in App.java: //DEPS io.javelit:javelit:X.Y.Z
+          sed -i "s/io\.javelit:javelit:[0-9.]\+/io.javelit:javelit:$VERSION/g" App.java
 
       - name: Check for changes
         id: check-changes
@@ -69,5 +69,5 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add README.md App.java
-          git commit -m "chore: update jeamlit dependency to $VERSION"
+          git commit -m "chore: update javelit dependency to $VERSION"
           git push
