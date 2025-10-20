@@ -15,7 +15,7 @@ Install Javelit:
 
 ### With [JBang](https://www.jbang.dev/) (recommended):
 ```bash
-jbang app install io.javelit:javelit:0.50.0:all@fatjar
+jbang app install javelit@javelit
 ```
 
 ### With curl:
