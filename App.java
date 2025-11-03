@@ -13,7 +13,7 @@ import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 public class App {
 
     public static void main(String[] args) {
-        Jt.title("Hello World !").use();
+        Jt.title("Hello Cyril !").use();
 
         Jt.markdown("## A simple click app").use();
 
