@@ -5,7 +5,7 @@
 
 // NOTE: this Javelit import is only here to help the Intellij Jbang plugin - it is not strictly necessary
 // NOTE: make sure to install the plugin for highlighting and completion https://plugins.jetbrains.com/plugin/18257-jbang
-//DEPS io.javelit:javelit:0.56.0
+//DEPS io.javelit:javelit:0.60.0
 
 import io.javelit.core.Jt;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
