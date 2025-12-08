@@ -21,7 +21,7 @@ jbang app install javelit@javelit
 ### With curl:
 
 ```bash
-curl -L -o javelit.jar https://repo1.maven.org/maven2/io/javelit/javelit/0.75.0/javelit-0.75.0-all.jar
+curl -L -o javelit.jar https://repo1.maven.org/maven2/io/javelit/javelit/0.76.0/javelit-0.76.0-all.jar
 ```
 
 ## Run 
